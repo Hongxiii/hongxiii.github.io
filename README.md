@@ -4,8 +4,14 @@ Hello, my name is Hongxi Li. I am pursuing my Master’s degree in the Media Com
 # 👨‍💻 &nbsp; Project #
 | Repostory | Description |
 |:------|:------|
-| 单元格1 | 单元格2 |
-| 单元格4 | 单元格5 |
+| [ContextualBench](https://hongxiii.github.io/ContextualBench/) | A context-violating image benchmark. |
+| [Counter_Context_Reasoning](https://github.com/Hongxiii/Counter_Context_Reasoning)| A pipeline using VLMs for counter-context image reasoning. |
+| [Soccer_Video_Summarization](https://github.com/Hongxiii/Soccer_Video_Summarization)| A method using temporally-aware pooling for soccer video summarization. |
+| [Diffusion_Pokemon](https://github.com/Hongxiii/Diffusion_Pokemon) | A text-to-image model based on DDPM for drawing images in the style of Pokémon. |
+| [Constrained_Text_Generation](https://github.com/Hongxiii/Constrained_Text_Generation) | A natural language processing model that generates descriptions based on keywords and their rankings. |
+| [Table2Text_Generation](https://github.com/Hongxiii/Table2Text_Generation) | A natural language processing model that generates news reports based on tabular information. |
+| [Gesture_Recognize](https://github.com/Hongxiii/Gesture_Recognize) | A gesture classification system using the AlexNet model. |
+| [Room_Book](https://github.com/Hongxiii/Room_Book)| A meeting attendance system based on Java Web. |
 
 # 📕 &nbsp; Publication #
 <!-- BLOG-POST-LIST:START -->
