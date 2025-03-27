@@ -1,5 +1,5 @@
 # <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="3%"> &nbsp; About Me ##
-I am a Full Stack Developer with 9+ years of experience in developing enterprise applications and open-source software.
+Hello, my name is Hongxi Li. I am pursuing my Master’s degree in the Media Computing and Intelligent Systems Laboratory (MCISLab) at the School of Computer, Beijing Institute of Technology, under the supervision of [Prof. Xinxiao Wu](https://wuxinxiao.github.io/). My research scope includes visual understanding and video summarization, and I am also enthusiastic about participating in other interesting projects related to deep learning or pre-trained models.
 
 # 👨‍💻 &nbsp; Project #
 
