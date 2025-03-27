@@ -6,7 +6,10 @@ I am a Full Stack Developer with 9+ years of experience in developing enterprise
 # 📕 &nbsp; Publication #
 <!-- BLOG-POST-LIST:START -->
 - [Video Summarization using Denoising Diffusion Probabilistic Model](https://arxiv.org/abs/2412.08357) [AAAI 2025]
-- [How I built one of the top 20 most used Github Actions](https://www.gautamkrishnar.com/how-i-built-one-of-the-top-20-most-used-github-actions/)
+- [How Vision-Language Tasks Benefit from Large Pre-trained Models: A Survey](https://arxiv.org/abs/2412.08158) [TMM 2025]
+- Challenging and Enhancing the Capacity of VLMs in Context-violating Images
+- Unifying VLMs and Knowledge Graph for Zero-shot Counter-intuitive Image Reasoning
+- A Comprehensive Survey on Video Summarization: Challenges and Advances
 <!-- BLOG-POST-LIST:END -->
 
 💬⚡
