@@ -9,5 +9,7 @@ I am a Full Stack Developer with 9+ years of experience in developing enterprise
 - [How I built one of the top 20 most used Github Actions](https://www.gautamkrishnar.com/how-i-built-one-of-the-top-20-most-used-github-actions/)
 <!-- BLOG-POST-LIST:END -->
 
+💬⚡
 **Visitor count**
+
 <img src="https://profile-counter.glitch.me/Hongxiii/count.svg" />
