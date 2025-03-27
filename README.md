@@ -1,4 +1,4 @@
-# <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="3%"> About Me ##
+# <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="3%"> &nbsp; About Me ##
 I am a Full Stack Developer with 9+ years of experience in developing enterprise applications and open-source software.
 
 # 👨‍💻 &nbsp; Project #
