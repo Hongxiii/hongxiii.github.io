@@ -7,13 +7,10 @@ This is the place where I opensource stuff and break things :rofl:
 - 👨‍💻 &nbsp;Read more about my projects at [gautamkrishnar.com](https://www.gautamkrishnar.com/#portfolio)
 - ⚡ &nbsp;Fun fact: I :heart: :dog:s and Xbox Gaming (GamerTag: [GKRXtreme](https://account.xbox.com/en-us/profile?gamertag=GKRXtreme))
 
-## <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="3%"> &nbsp; About Me ##
-
-
-## ✨&nbsp; About Me ##
-
+## <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="3%"> About Me ##
 I am a Full Stack Developer with 9+ years of experience in developing enterprise applications and open-source software.
 
+## ✨&nbsp; About Me ##
 
 ## 📕 &nbsp;Latest Blog Posts ##
 <!-- BLOG-POST-LIST:START -->
