@@ -27,6 +27,614 @@
             document.documentElement.classList.remove('dark')
         }
     </script>
+
+    <style>
+    /* ===== Experience Timeline ===== */
+    .experience-wrap {
+        position: relative;
+        max-width: 980px;
+        margin: 0 auto;
+    }
+
+    .experience-intro {
+        max-width: 680px;
+        margin: -2px 0 34px;
+        color: #64748b;
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .dark .experience-intro {
+        color: #94a3b8;
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 54px;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 18px;
+        top: 12px;
+        bottom: 18px;
+        width: 2px;
+        border-radius: 99px;
+        background: linear-gradient(180deg, #6366f1 0%, #a78bfa 55%, #e2e8f0 100%);
+    }
+
+    .timeline-node {
+        position: relative;
+        margin: 10px 0 20px;
+    }
+
+    .timeline-node::before {
+        content: '';
+        position: absolute;
+        left: -44px;
+        top: 50%;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        background: #6366f1;
+        border: 4px solid #fff;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.20), 0 5px 14px rgba(99, 102, 241, 0.25);
+    }
+
+    .timeline-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 14px;
+        border: 1px solid rgba(99, 102, 241, 0.18);
+        border-radius: 999px;
+        background: rgba(99, 102, 241, 0.08);
+        color: #4f46e5;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 1.8px;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    .timeline-label i {
+        font-size: 13px;
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 24px;
+    }
+
+    .timeline-dot {
+        position: absolute;
+        left: -41px;
+        top: 30px;
+        z-index: 2;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #fff;
+        border: 3px solid #a5b4fc;
+        box-shadow: 0 0 0 4px #fff;
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .timeline-content {
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 68px minmax(0, 1fr);
+        gap: 20px;
+        align-items: center;
+        padding: 24px 26px;
+        border: 1px solid #e7eaf3;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.055);
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .timeline-content::after {
+        content: '';
+        position: absolute;
+        right: -54px;
+        bottom: -66px;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.10), transparent 68%);
+        pointer-events: none;
+    }
+
+    .timeline-item:hover .timeline-content {
+        transform: translateY(-4px);
+        border-color: rgba(99, 102, 241, 0.42);
+        box-shadow: 0 18px 42px rgba(79, 70, 229, 0.13);
+    }
+
+    .timeline-item:hover .timeline-dot {
+        transform: scale(1.18);
+        border-color: #6366f1;
+        box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.12);
+    }
+
+    /* Fixed local company logos */
+    .experience-logo {
+        position: relative;
+        z-index: 1;
+        width: 68px;
+        height: 68px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border: 1px solid rgba(99, 102, 241, 0.16);
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.42);
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .experience-logo:hover {
+        transform: scale(1.04);
+        border-color: rgba(99, 102, 241, 0.45);
+        box-shadow: 0 9px 20px rgba(79, 70, 229, 0.12);
+    }
+
+    .experience-logo.baidu {
+        border-color: rgba(37, 99, 235, 0.16);
+    }
+
+    .experience-logo.wenge {
+        border-color: rgba(15, 118, 110, 0.16);
+    }
+
+    .experience-logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 8px;
+        object-fit: contain;
+        background: #fff;
+    }
+
+    .experience-main {
+        position: relative;
+        z-index: 1;
+        min-width: 0;
+    }
+
+    .timeline-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 9px 12px;
+        margin-bottom: 10px;
+    }
+
+    .timeline-title-group {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        min-width: 0;
+        gap: 9px 12px;
+    }
+
+    .timeline-header h6 {
+        margin: 0;
+        color: #0f172a;
+        font-size: 18px;
+        font-weight: 750;
+        letter-spacing: -0.2px;
+    }
+
+    .company {
+        position: relative;
+        padding-left: 12px;
+        color: #4f46e5;
+        font-size: 14px;
+        font-weight: 650;
+    }
+
+    .company::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: currentColor;
+        transform: translateY(-50%);
+    }
+
+    .timeline-meta {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 18px;
+        color: #64748b;
+        font-size: 13px;
+        line-height: 1.5;
+        white-space: nowrap;
+    }
+
+    .timeline-meta span {
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        gap: 6px;
+        margin-left: auto;
+        padding: 5px 9px;
+        border: 1px solid #bbf7d0;
+        border-radius: 999px;
+        background: #f0fdf4;
+        color: #15803d;
+        font-size: 11px;
+        font-weight: 750;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    .status-badge::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #22c55e;
+        box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.13);
+    }
+
+    .dark .timeline::before {
+        background: linear-gradient(180deg, #818cf8 0%, #a78bfa 55%, #334155 100%);
+    }
+
+    .dark .timeline-node::before {
+        border-color: #111827;
+    }
+
+    .dark .timeline-label {
+        border-color: rgba(129, 140, 248, 0.25);
+        background: rgba(99, 102, 241, 0.15);
+        color: #a5b4fc;
+    }
+
+    .dark .timeline-dot {
+        background: #111827;
+        border-color: #818cf8;
+        box-shadow: 0 0 0 4px #111827;
+    }
+
+    .dark .timeline-content {
+        border-color: #2d3748;
+        background: linear-gradient(135deg, #172033 0%, #111827 100%);
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+    }
+
+    .dark .timeline-item:hover .timeline-content {
+        border-color: rgba(129, 140, 248, 0.5);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.30);
+    }
+
+    .dark .experience-logo {
+        border-color: rgba(129, 140, 248, 0.22);
+        background: rgba(99, 102, 241, 0.16);
+        color: #a5b4fc;
+    }
+
+    .dark .experience-logo.baidu {
+        border-color: rgba(96, 165, 250, 0.22);
+        background: rgba(37, 99, 235, 0.16);
+        color: #93c5fd;
+    }
+
+    .dark .experience-logo.wenge {
+        border-color: rgba(45, 212, 191, 0.22);
+        background: rgba(13, 148, 136, 0.16);
+        color: #99f6e4;
+    }
+
+    .dark .experience-logo img {
+        background: #fff;
+    }
+
+    .dark .timeline-header h6 {
+        color: #f8fafc;
+    }
+
+    .dark .company {
+        color: #a5b4fc;
+    }
+
+    .dark .timeline-meta {
+        color: #94a3b8;
+    }
+
+    .dark .status-badge {
+        border-color: rgba(34, 197, 94, 0.28);
+        background: rgba(34, 197, 94, 0.10);
+        color: #86efac;
+    }
+
+    @media (max-width: 767px) {
+        .experience-intro {
+            margin-bottom: 26px;
+        }
+
+        .timeline {
+            padding-left: 36px;
+        }
+
+        .timeline::before {
+            left: 10px;
+        }
+
+        .timeline-node::before {
+            left: -34px;
+        }
+
+        .timeline-dot {
+            left: -31px;
+            top: 28px;
+        }
+
+        .timeline-content {
+            grid-template-columns: 54px minmax(0, 1fr);
+            gap: 14px;
+            padding: 20px 18px;
+            border-radius: 15px;
+        }
+
+        .experience-logo {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+        }
+
+        .timeline-header h6 {
+            font-size: 16px;
+        }
+
+        .company {
+            font-size: 13px;
+        }
+
+        .timeline-meta {
+            gap: 12px;
+            font-size: 12px;
+        }
+    }
+
+    @media (max-width: 520px) {
+        .timeline {
+            padding-left: 28px;
+        }
+
+        .timeline::before {
+            left: 7px;
+        }
+
+        .timeline-node::before {
+            left: -29px;
+        }
+
+        .timeline-dot {
+            left: -25px;
+        }
+
+        .timeline-content {
+            grid-template-columns: 46px minmax(0, 1fr);
+            gap: 11px;
+            padding: 18px 14px;
+        }
+
+        .experience-logo {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+        }
+
+        .timeline-header {
+            gap: 7px;
+        }
+
+        .timeline-title-group {
+            gap: 5px 8px;
+        }
+
+        .timeline-header h6 {
+            font-size: 15px;
+        }
+
+        .company {
+            padding-left: 9px;
+            font-size: 12px;
+        }
+
+        .timeline-meta {
+            gap: 8px;
+            font-size: 10.5px;
+            letter-spacing: -0.1px;
+        }
+
+        .status-badge {
+            padding: 4px 7px;
+            font-size: 9px;
+        }
+    }
+    
+
+    /* ===== Publication Carousel ===== */
+    .publication-carousel {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 76px;
+    }
+
+    .publication-track {
+        display: flex;
+        transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: transform;
+    }
+
+    .publication-slide {
+        flex: 0 0 100%;
+        min-width: 100%;
+    }
+
+    .publication-slide-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px;
+    }
+
+    .publication-slide .blog-grid {
+        height: 100%;
+        margin: 0;
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .publication-slide .blog-grid:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 18px 42px rgba(15, 23, 42, 0.14);
+    }
+
+    .publication-slide .blog-img img {
+        display: block;
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .publication-slide .blog-info {
+        min-height: 132px;
+    }
+
+    .publication-controls {
+        position: absolute;
+        right: 0;
+        bottom: 8px;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+    }
+
+    .publication-arrow {
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(99, 102, 241, 0.24);
+        border-radius: 50%;
+        background: #fff;
+        color: #4f46e5;
+        box-shadow: 0 7px 20px rgba(15, 23, 42, 0.08);
+        cursor: pointer;
+        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .publication-arrow:hover {
+        transform: translateY(-2px);
+        border-color: #6366f1;
+        background: #eef2ff;
+    }
+
+    .publication-arrow:focus-visible,
+    .publication-dot:focus-visible {
+        outline: 3px solid rgba(99, 102, 241, 0.28);
+        outline-offset: 3px;
+    }
+
+    .publication-dots {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .publication-dot {
+        width: 9px;
+        height: 9px;
+        padding: 0;
+        border: 0;
+        border-radius: 999px;
+        background: #cbd5e1;
+        cursor: pointer;
+        transition: width 0.25s ease, background 0.25s ease;
+    }
+
+    .publication-dot.active {
+        width: 26px;
+        background: #6366f1;
+    }
+
+    .dark .publication-slide .blog-grid,
+    .dark .publication-arrow {
+        border-color: rgba(129, 140, 248, 0.22);
+        background: #111827;
+    }
+
+    .dark .publication-slide .blog-grid {
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+    }
+
+    .dark .publication-arrow {
+        color: #a5b4fc;
+    }
+
+    .dark .publication-arrow:hover {
+        border-color: #818cf8;
+        background: #1e293b;
+    }
+
+    .dark .publication-dot {
+        background: #475569;
+    }
+
+    .dark .publication-dot.active {
+        background: #818cf8;
+    }
+
+    @media (max-width: 767px) {
+        .publication-slide-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .publication-slide .blog-img img {
+            height: 240px;
+        }
+
+        .publication-slide .blog-info {
+            min-height: 0;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .publication-track,
+        .publication-slide .blog-grid,
+        .publication-arrow,
+        .publication-dot {
+            transition: none;
+        }
+    }
+
+    </style>
 </head>
 <!-- Body Start -->
 
@@ -77,23 +685,11 @@
                         <i class="far fa-file"></i>
                     </a>
                 </li>
-                <!-- <li>
-                    <a class="nav-link" data-scroll-nav="3" href="#work">
-                        <span>WORK</span>
-                        <i class="fas fa-briefcase"></i>
-                    </a>
-                </li> -->
                 <li>
                     <a class="nav-link" data-scroll-nav="3" href="#publication">
                         <span>BLOG</span>
                         <!-- <i class="fas fa-blog"></i> -->
                         <i class="fas fa-briefcase"></i>
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link" data-scroll-nav="4" href="#contactus">
-                        <span>CONTACT</span>
-                        <i class="fas fa-id-card-alt"></i>
                     </a>
                 </li>
             </ul>
@@ -122,8 +718,7 @@
                         <div class="type-box">
                             <h6>👋 Hello, my name is</h6>
                             <h1 class="font-alt">Hongxi Li</h1>
-                            <!-- <h3>working as a computer vision engineer at Meitu Imaging & Vision Lab (MT Lab), specializing in visual segmentation and generation. I received my Master's degree in the Media Computing and Intelligent Systems Laboratory (MCISLab) at the School of Computer Science, Beijing Institute of Technology.<span id="type-it"></span></h3> -->
-                            <p class="desc">working as a computer vision engineer at Meitu Imaging & Vision Lab (MT Lab), specializing in visual segmentation and generation. I received my Master's degree in the Media Computing and Intelligent Systems Laboratory (MCISLab) at the School of Computer Science, Beijing Institute of Technology.</p>
+                            <p class="desc">working as an algorithm engineer at Bytedance, specializing in visual understanding and generation. I received my Master's degree in the Media Computing and Intelligent Systems Laboratory (MCISLab) at the School of Computer Science, Beijing Institute of Technology.</p>
                         </div>
                     </div>
                 </div>
@@ -162,7 +757,7 @@
                                 <h3>Biography</h3>
                             </div>
                             <div class="about-text">
-                                <p>Hello, I am Hongxi Li, working as a computer vision engineer at Meitu Imaging & Vision Lab (MT Lab), specializing in visual segmentation and generation.</p>
+                                <p>Hello, I am Hongxi Li, working as an algorithm engineer at Bytedance, specializing in visual understanding and generation.</p>
                                 <p>I received my Master's degree in the Media Computing and Intelligent Systems Laboratory (MCISLab) at the School of Computer Science, Beijing Institute of Technology, under the supervision of <a href="https://wuxinxiao.github.io/"><u>Prof. Xinxiao Wu</u></a>.</p>
                             </div>
                             <div class="info-list">
@@ -191,7 +786,7 @@
                                             </li>
                                             <li>
                                                 <label>Email: </label>
-                                                <span>lhx5@meitu.com</span>
+                                                <span>lihongxibit@163.com</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -242,228 +837,228 @@
         <!-- Resume -->
         <section data-scroll-index="2" id="resume" class="section">
             <div class="container">
-                <div class="title">
-                    <h3>Experience</h3>
-                </div>
-                <div class="resume-row">
-                    <div class="grid grid-cols-12 gap-7">
-                        <div class="col-span-12 md:col-span-4 xl:col-span-3">
-                            <div class="rb-left">
-                                <h6>Computer Vision Engineer</h6>
-                                <label>Beijing, China</label>
-                                <p>Jul 2025 - Present</p>
-                                <div class="rb-time">Full Time</div>
+                <div class="experience-wrap">
+                    <div class="title">
+                        <h3>Experience</h3>
+                    </div>
+
+                    <div class="timeline">
+
+                        <!-- Full Time -->
+                        <div class="timeline-node">
+                            <div class="timeline-label"><i class="bi bi-briefcase-fill"></i> Full Time</div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="experience-logo" title="Meitu">
+                                    <img src="assets/img/bytedance.png" alt="Bytedance logo">
+                                </div>
+
+                                <div class="experience-main">
+                                    <div class="timeline-header">
+                                        <div class="timeline-title-group">
+                                            <h6>Algorithm Engineer</h6>
+                                            <span class="company">Bytedance</span>
+                                        </div>
+                                        <span class="status-badge">Current</span>
+                                    </div>
+                                    <div class="timeline-meta">
+                                        <span>📅 Jul 2026 - Now</span>
+                                        <span>📍 Beijing, China</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-span-12 md:col-span-8 xl:col-span-9">
-                            <div class="rb-right">
-                                <h6>MT Lab, Meitu</h6>
-                                <p>As the algorithm hub of Meitu Corporation, MT Lab is at the forefront of the world in various fields such as facial technology, human body technology, image recognition, image processing, and image generation.</p>
-                                <p style="text-align: right;">————mtlab.meitu.com</p>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="experience-logo" title="Meitu">
+                                    <img src="assets/img/meitu.webp" alt="Meitu logo">
+                                </div>
+
+                                <div class="experience-main">
+                                    <div class="timeline-header">
+                                        <div class="timeline-title-group">
+                                            <h6>Computer Vision Engineer</h6>
+                                            <span class="company">MT Lab, Meitu</span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-meta">
+                                        <span>📅 Jul 2025 - Jul 2026</span>
+                                        <span>📍 Beijing, China</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Internship -->
+                        <div class="timeline-node">
+                            <div class="timeline-label"><i class="bi bi-code-slash"></i> Internship</div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="experience-logo baidu" title="Baidu">
+                                    <img src="assets/img/baidu.png" alt="Baidu logo">
+                                </div>
+
+                                <div class="experience-main">
+                                    <div class="timeline-header">
+                                        <div class="timeline-title-group">
+                                            <h6>Algorithm Intern</h6>
+                                            <span class="company">MEG, Baidu</span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-meta">
+                                        <span>📅 Jan 2025 - Apr 2025</span>
+                                        <span>📍 Beijing, China</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="experience-logo wenge" title="Wenge Technology">
+                                    <img src="assets/img/wenge.png" alt="Wenge Technology logo">
+                                </div>
+
+                                <div class="experience-main">
+                                    <div class="timeline-header">
+                                        <div class="timeline-title-group">
+                                            <h6>Algorithm Intern</h6>
+                                            <span class="company">Wenge Technology</span>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-meta">
+                                        <span>📅 Jun 2024 - Sep 2024</span>
+                                        <span>📍 Beijing, China</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                <div class="resume-box">
-                    <div class="resume-row">
-                        <div class="grid grid-cols-12 gap-7">
-                            <div class="col-span-12 md:col-span-4 xl:col-span-3">
-                                <div class="rb-left">
-                                    <h6>Algorithm Intern</h6>
-                                    <label>Beijing, China</label>
-                                    <p>Jan 2025 - Apr 2025</p>
-                                    <div class="rb-time">Internship</div>
-                                </div>
-                            </div>
-                            <div class="col-span-12 md:col-span-8 xl:col-span-9">
-                                <div class="rb-right">
-                                    <h6>MEG, Baidu</h6>
-                                    <p>Baidu's MEG (Mobile Ecosystem Group) is a core division driving its mobile strategy, integrating search (Baidu App), content (Baijiahao, Haokan), and AI-powered services to boost user engagement and ad revenue.</p>
-                                    <p style="text-align: right;"> ———— deepseek</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="resume-row">
-                        <div class="grid grid-cols-12 gap-7">
-                            <div class="col-span-12 md:col-span-4 xl:col-span-3">
-                                <div class="rb-left">
-                                    <h6>Algorithm Intern</h6>
-                                    <label>Beijing, China</label>
-                                    <p>Jun 2024 - Sep 2024</p>
-                                    <div class="rb-time">Internship</div>
-                                </div>
-                            </div>
-                            <div class="col-span-12 md:col-span-8 xl:col-span-9">
-                                <div class="rb-right">
-                                    <h6>Media AI Department, Wenge Technology</h6>
-                                    <p>Leveraging multimodal semantic fusion analysis, the company has built DIOS, an independent data and decision intelligence platform specializing in complex data processing and AI-aided decision-making. It provides multilingual, cross-modal, and deep cognitive AI solutions for media, finance, governance, security, and more.</p>
-                                    <p style="text-align: right;"> ———— baike.baidu.com</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
-                </div>
- 
             </div>
         </section>
         <!-- Resume End -->
 
         <!-- Publication -->
-        <section data-scroll-index="3" id="publication" class="section">
+        <section data-scroll-index="3" id="publication" class="section bg-gray">
             <div class="container">
                 <div class="title">
                     <h3>Publication</h3>
                 </div>
-                <div class="grid grid-cols-12 gap-7">
-                    <div class="col-span-12 md:col-span-6">
-                        <div class="blog-grid">
-                            <div class="blog-img">
-                                <a class="px_modal" href="https://hongxiii.github.io/mstedit/">
-                                    <img src="assets/img/pub-6.png" style="width:100%; height:300px; object-fit:cover;" title="" alt="">
-                                </a>
+
+                <div class="publication-carousel" aria-roledescription="carousel" aria-label="Publication carousel">
+                    <div class="publication-track">
+                        <!-- Page 1: publications 1-2 -->
+                        <div class="publication-slide" role="group" aria-roledescription="slide" aria-label="1 of 3">
+                            <div class="publication-slide-grid">
+                                <div class="blog-grid">
+                                    <div class="blog-img">
+                                        <a class="px_modal" href="https://hongxiii.github.io/mstedit/">
+                                            <img src="assets/img/pub-6.png" title="" alt="Self-Prompting Diffusion Transformer publication cover">
+                                        </a>
+                                    </div>
+                                    <div class="blog-info">
+                                        <div class="meta">01/AUG/2026 - ICML 2026</div>
+                                        <h6><a class="px_modal" href="https://hongxiii.github.io/mstedit/">Self-Prompting Diffusion Transformer for Open-Vocabulary Scene Text Editing via In-Context Learning</a></h6>
+                                    </div>
+                                </div>
+
+                                <div class="blog-grid">
+                                    <div class="blog-img">
+                                        <a class="px_modal" href="https://www.sciencedirect.com/science/article/abs/pii/S003132032600988X">
+                                            <img src="assets/img/pub-5.png" title="" alt="Context-violating images publication cover">
+                                        </a>
+                                    </div>
+                                    <div class="blog-info">
+                                        <div class="meta">18/MAY/2026 - Pattern Recognition 2026</div>
+                                        <h6><a class="px_modal" href="https://www.sciencedirect.com/science/article/abs/pii/S003132032600988X">Challenging and Enhancing the Capacity of VLMs in Context-violating Images</a></h6>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="blog-info">
-                                <div class="meta">01/AUG/2026- ICML 2026</div>
-                                <h6><a class="px_modal" href="https://hongxiii.github.io/mstedit/">Self-Prompting Diffusion Transformer for Open-Vocabulary Scene Text Editing via In-Context Learning</a></h6>
+                        </div>
+
+                        <!-- Page 2: publications 3-4 -->
+                        <div class="publication-slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
+                            <div class="publication-slide-grid">
+                                <div class="blog-grid">
+                                    <div class="blog-img">
+                                        <a class="px_modal" href="https://ieeexplore.ieee.org/document/11113316">
+                                            <img src="assets/img/pub-4.png" title="" alt="Video summarization survey publication cover">
+                                        </a>
+                                    </div>
+                                    <div class="blog-info">
+                                        <div class="meta">01/AUG/2025 - TCSVT 2025</div>
+                                        <h6><a class="px_modal" href="https://ieeexplore.ieee.org/document/11113316">A Comprehensive Survey on Video Summarization: Challenges and Advances</a></h6>
+                                    </div>
+                                </div>
+
+                                <div class="blog-grid">
+                                    <div class="blog-img">
+                                        <a class="px_modal" href="https://ojs.aaai.org/index.php/AAAI/article/view/32727">
+                                            <img src="assets/img/pub-1.jpg" title="" alt="Diffusion video summarization publication cover">
+                                        </a>
+                                    </div>
+                                    <div class="blog-info">
+                                        <div class="meta">12/DEC/2024 - AAAI 2025</div>
+                                        <h6><a class="px_modal" href="https://ojs.aaai.org/index.php/AAAI/article/view/32727">Video Summarization using Denoising Diffusion Probabilistic Model</a></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Page 3: publications 5-6 -->
+                        <div class="publication-slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
+                            <div class="publication-slide-grid">
+                                <div class="blog-grid">
+                                    <div class="blog-img">
+                                        <a class="px_modal" href="https://arxiv.org/abs/2412.08158">
+                                            <img src="assets/img/pub-2.jpg" title="" alt="Vision-language tasks survey publication cover">
+                                        </a>
+                                    </div>
+                                    <div class="blog-info">
+                                        <div class="meta">03/MAY/2025 - TMM 2025</div>
+                                        <h6><a class="px_modal" href="https://arxiv.org/abs/2412.08158">How Vision-Language Tasks Benefit from Large Pre-trained Models: A Survey</a></h6>
+                                    </div>
+                                </div>
+
+                                <div class="blog-grid">
+                                    <div class="blog-img">
+                                        <a class="px_modal" href="https://ieeexplore.ieee.org/document/11085609">
+                                            <img src="assets/img/pub-3.png" title="" alt="Zero-shot counter-intuitive image reasoning publication cover">
+                                        </a>
+                                    </div>
+                                    <div class="blog-info">
+                                        <div class="meta">13/MAY/2025 - CVIDL 2025</div>
+                                        <h6><a class="px_modal" href="https://ieeexplore.ieee.org/document/11085609">Unifying VLMs and Knowledge Graph for Zero-shot Counter-intuitive Image Reasoning</a></h6>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-12 md:col-span-6">
-                        <div class="blog-grid">
-                            <div class="blog-img">
-                                <a class="px_modal" href="https://www.sciencedirect.com/science/article/abs/pii/S003132032600988X">
-                                    <img src="assets/img/pub-5.png" style="width:100%; height:300px; object-fit:cover;" title="" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-info">
-                                <div class="meta">18/MAY/2026 - Pattern Recognition 2026</div>
-                                <h6><a class="px_modal" href="https://www.sciencedirect.com/science/article/abs/pii/S003132032600988X">Challenging and Enhancing the Capacity of VLMs in Context-violating Images</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-span-12 md:col-span-6">
-                        <div class="blog-grid">
-                            <div class="blog-img">
-                                <a class="px_modal" href="https://ieeexplore.ieee.org/document/11113316">
-                                    <img src="assets/img/pub-4.png" style="width:100%; height:300px; object-fit:cover;" title="" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-info">
-                                <div class="meta">01/AUG/2025- TCSVT 2025</div>
-                                <h6><a class="px_modal" href="https://ieeexplore.ieee.org/document/11113316">A Comprehensive Survey onVideo Summarization: Challenges and Advances</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-span-12 md:col-span-6">
-                        <div class="blog-grid">
-                            <div class="blog-img">
-                                <a class="px_modal" href="https://ojs.aaai.org/index.php/AAAI/article/view/32727">
-                                    <img src="assets/img/pub-1.jpg" style="width:100%; height:300px; object-fit:cover;" title="" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-info">
-                                <div class="meta">12/DEC/2024 - AAAI 2025</div>
-                                <h6><a class="px_modal" href="https://ojs.aaai.org/index.php/AAAI/article/view/32727">Video Summarization using Denoising Diffusion Probabilistic Model</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-span-12 md:col-span-6">
-                        <div class="blog-grid">
-                            <div class="blog-img">
-                                <a class="px_modal" href="https://arxiv.org/abs/2412.08158">
-                                    <img src="assets/img/pub-2.jpg" style="width:100%; height:300px; object-fit:cover;" title="" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-info">
-                                <div class="meta">03/MAY/2025 - TMM 2025</div>
-                                <h6><a class="px_modal" href="https://arxiv.org/abs/2412.08158">How Vision-Language Tasks Benefit from Large Pre-trained Models: A Survey</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-span-12 md:col-span-6">
-                        <div class="blog-grid">
-                            <div class="blog-img">
-                                <a class="px_modal" href="https://ieeexplore.ieee.org/document/11085609">
-                                    <img src="assets/img/pub-3.png" style="width:100%; height:300px; object-fit:cover;" title="" alt="">
-                                </a>
-                            </div>
-                            <div class="blog-info">
-                                <div class="meta">13/MAY/2025 - CVIDL 2025</div>
-                                <h6><a class="px_modal" href="https://ieeexplore.ieee.org/document/11085609">Unifying VLMs and Knowledge Graph for Zero-shot Counter-intuitive Image Reasoning</a></h6>
-                            </div>
-                        </div>
+
+                    <div class="publication-controls" aria-label="Publication carousel controls">
+                        <button class="publication-arrow publication-prev" type="button" aria-label="Previous publication page">
+                            <i class="bi bi-arrow-left"></i>
+                        </button>
+                        <div class="publication-dots" aria-label="Choose publication page"></div>
+                        <button class="publication-arrow publication-next" type="button" aria-label="Next publication page">
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
         <!-- End Blog -->
-
-        <!-- Contact us -->
-        <section data-scroll-index="4" id="contactus" class="section bg-gray">
-            <div class="container">
-                <div class="grid grid-cols-12 gap-7">
-                    <div class="col-span-12 lg:col-span-5 xl:col-span-4">
-                        <div class="contact-info">
-                            <h4>What’s your story? Get in touch</h4>
-                            <p>Always available for freelancing if the right project comes along, Feel free to contact me.</p>
-                            <ul>
-                                <li class="media">
-                                    <i class="bi-map"></i>
-                                    <span class="media-body">No. 5, Zhongguancun South Street, Haidian District, Beijing, China.</span>
-                                </li>
-                                <li class="media">
-                                    <i class="bi-envelope"></i>
-                                    <span class="media-body">lhx5@meitu.com</span>
-                                </li>
-                                <li class="media">
-                                    <i class="bi-phone"></i>
-                                    <span class="media-body">QQ: 1452006165</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-span-12 lg:col-span-7 xl:col-span-8">
-                        <div class="contact-form">
-                            <h4>Say Something</h4>
-                            <form id="contact-form" method="POST">
-                                <div class="grid grid-cols-12 gap-5">
-                                    <div class="col-span-12 md:col-span-6">
-                                        <div class="form-group">
-                                            <input name="Name" id="name" placeholder="Name *" class="form-control" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-span-12 md:col-span-6">
-                                        <div class="form-group">
-                                            <input name="Email" id="email" placeholder="Email *" class="form-control" type="email">
-                                        </div>
-                                    </div>
-                                    <div class="col-span-12">
-                                        <div class="form-group">
-                                            <input name="Subject" id="subject" placeholder="Subject *" class="form-control" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-span-12">
-                                        <div class="form-group">
-                                            <textarea name="message" id="message" placeholder="Your message *" rows="5" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-span-12">
-                                        <div class="send">
-                                            <button class="px-btn px-btn-white" onclick="send_mail()" type="button" value="Send"> send message</button>
-                                        </div>
-                                        <span id="suce_message" class="text-success" style="display: none">Message Sent Successfully</span>
-                                        <span id="err_message" class="text-danger" style="display: none">Message Sending Failed</span>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Contact us -->
 
         <!-- All Snigle blog -->
         <!-- Snigle 1 -->
@@ -557,13 +1152,14 @@
             <div class="container">
                 <div class="grid grid-cols-12">
                     <div class="col-span-12 md:col-span-6 flex pb-3 md:pb-0">
-                        <div class="flex justify-center md:justify-start w-full">
+                        📮 lihongxibit@163.com      📍 Beijing, China
+                        <!-- <div class="flex justify-center md:justify-start w-full">
                             <a class="text-gray-700 dark:text-white text-opacity-90 hover:text-theme-500 mr-5 text-[16px]" href="https://github.com/Hongxiii"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" alt="GitHub"></a>
                             <a class="text-gray-700 dark:text-white text-opacity-90 hover:text-theme-500 mr-5 text-[16px]" href="https://huggingface.co/ToughStone"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" width="25" alt="Hugging Face"></a>
                             <a class="text-gray-700 dark:text-white text-opacity-90 hover:text-theme-500 mr-5 text-[16px]" href="https://blog.csdn.net/lhx0525"><img src="https://g.csdnimg.cn/static/logo/favicon32.ico" width="25" alt="CSDN"></a>
                             <a class="text-gray-700 dark:text-white text-opacity-90 hover:text-theme-500 mr-5 text-[16px]" href="#"><i class="fab fa-twitter" width="25"></i></a>
                             <a class="text-gray-700 dark:text-white text-opacity-90 hover:text-theme-500 mr-5 text-[16px]" href="#"><i class="fab fa-facebook" width="25"></i></a>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- 访客计数 -->
                     <div class="col-span-12 md:col-span-6 flex items-center justify-center md:justify-end">
@@ -588,6 +1184,114 @@
     <script src="assets/vendor/one-page/scrollIt.min.js"></script>
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/dark.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const carousel = document.querySelector('.publication-carousel');
+            if (!carousel) return;
+
+            const track = carousel.querySelector('.publication-track');
+            const slides = Array.from(carousel.querySelectorAll('.publication-slide'));
+            const previousButton = carousel.querySelector('.publication-prev');
+            const nextButton = carousel.querySelector('.publication-next');
+            const dotsContainer = carousel.querySelector('.publication-dots');
+
+            let currentPage = 0;
+            let autoplayTimer = null;
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const autoplayDelay = 5000;
+
+            const dots = slides.map(function (_, index) {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'publication-dot';
+                dot.setAttribute('aria-label', 'Go to publication page ' + (index + 1));
+                dot.addEventListener('click', function () {
+                    showPage(index);
+                    restartAutoplay();
+                });
+                dotsContainer.appendChild(dot);
+                return dot;
+            });
+
+            function showPage(index) {
+                currentPage = (index + slides.length) % slides.length;
+                track.style.transform = 'translateX(-' + (currentPage * 100) + '%)';
+
+                slides.forEach(function (slide, slideIndex) {
+                    slide.setAttribute('aria-hidden', slideIndex === currentPage ? 'false' : 'true');
+                });
+
+                dots.forEach(function (dot, dotIndex) {
+                    const isActive = dotIndex === currentPage;
+                    dot.classList.toggle('active', isActive);
+                    dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+                });
+            }
+
+            function stopAutoplay() {
+                if (autoplayTimer) {
+                    window.clearInterval(autoplayTimer);
+                    autoplayTimer = null;
+                }
+            }
+
+            function startAutoplay() {
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                stopAutoplay();
+                autoplayTimer = window.setInterval(function () {
+                    showPage(currentPage + 1);
+                }, autoplayDelay);
+            }
+
+            function restartAutoplay() {
+                stopAutoplay();
+                startAutoplay();
+            }
+
+            previousButton.addEventListener('click', function () {
+                showPage(currentPage - 1);
+                restartAutoplay();
+            });
+
+            nextButton.addEventListener('click', function () {
+                showPage(currentPage + 1);
+                restartAutoplay();
+            });
+
+            carousel.addEventListener('mouseenter', stopAutoplay);
+            carousel.addEventListener('mouseleave', startAutoplay);
+            carousel.addEventListener('focusin', stopAutoplay);
+            carousel.addEventListener('focusout', startAutoplay);
+
+            carousel.addEventListener('keydown', function (event) {
+                if (event.key === 'ArrowLeft') {
+                    showPage(currentPage - 1);
+                    restartAutoplay();
+                } else if (event.key === 'ArrowRight') {
+                    showPage(currentPage + 1);
+                    restartAutoplay();
+                }
+            });
+
+            carousel.addEventListener('touchstart', function (event) {
+                touchStartX = event.changedTouches[0].screenX;
+            }, { passive: true });
+
+            carousel.addEventListener('touchend', function (event) {
+                touchEndX = event.changedTouches[0].screenX;
+                const distance = touchEndX - touchStartX;
+                if (Math.abs(distance) < 50) return;
+                showPage(distance > 0 ? currentPage - 1 : currentPage + 1);
+                restartAutoplay();
+            }, { passive: true });
+
+            showPage(0);
+            startAutoplay();
+        });
+    </script>
+
 </body>
 <!-- Body End -->
 
